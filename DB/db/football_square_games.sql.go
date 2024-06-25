@@ -10,7 +10,7 @@ import (
 	"database/sql"
 )
 
-const createFootballSquareGame = `-- name: CreateFootballSquareGame :execresult
+const createFootballSquareGame = `-- name: CreateFootballSquareGame :execlastid
 INSERT INTO football_square_games (
   game_id, square_id, row_index, column_index
 ) VALUES (
@@ -25,13 +25,17 @@ type CreateFootballSquareGameParams struct {
 	ColumnIndex sql.NullInt32
 }
 
-func (q *Queries) CreateFootballSquareGame(ctx context.Context, arg CreateFootballSquareGameParams) (sql.Result, error) {
-	return q.db.ExecContext(ctx, createFootballSquareGame,
+func (q *Queries) CreateFootballSquareGame(ctx context.Context, arg CreateFootballSquareGameParams) (int64, error) {
+	result, err := q.db.ExecContext(ctx, createFootballSquareGame,
 		arg.GameID,
 		arg.SquareID,
 		arg.RowIndex,
 		arg.ColumnIndex,
 	)
+	if err != nil {
+		return 0, err
+	}
+	return result.LastInsertId()
 }
 
 const getFootballSquareGameByGameID = `-- name: GetFootballSquareGameByGameID :many

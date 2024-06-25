@@ -1,4 +1,4 @@
--- name: CreateFootballSquareGame :execresult
+-- name: CreateFootballSquareGame :execlastid
 INSERT INTO football_square_games (
   game_id, square_id, row_index, column_index
 ) VALUES (
