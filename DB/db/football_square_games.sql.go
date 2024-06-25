@@ -38,21 +38,56 @@ func (q *Queries) CreateFootballSquareGame(ctx context.Context, arg CreateFootba
 	return result.LastInsertId()
 }
 
+const getFootballSquareGame = `-- name: GetFootballSquareGame :one
+SELECT football_square_game_id, game_id, square_id, user_id, winner, winner_quarter_number, row_index, column_index
+FROM football_square_games football 
+WHERE
+  football.football_square_game_id = ?
+`
+
+type GetFootballSquareGameRow struct {
+	FootballSquareGameID int32
+	GameID               sql.NullInt32
+	SquareID             sql.NullInt32
+	UserID               sql.NullInt32
+	Winner               sql.NullBool
+	WinnerQuarterNumber  sql.NullInt16
+	RowIndex             sql.NullInt32
+	ColumnIndex          sql.NullInt32
+}
+
+func (q *Queries) GetFootballSquareGame(ctx context.Context, footballSquareGameID int32) (GetFootballSquareGameRow, error) {
+	row := q.db.QueryRowContext(ctx, getFootballSquareGame, footballSquareGameID)
+	var i GetFootballSquareGameRow
+	err := row.Scan(
+		&i.FootballSquareGameID,
+		&i.GameID,
+		&i.SquareID,
+		&i.UserID,
+		&i.Winner,
+		&i.WinnerQuarterNumber,
+		&i.RowIndex,
+		&i.ColumnIndex,
+	)
+	return i, err
+}
+
 const getFootballSquareGameByGameID = `-- name: GetFootballSquareGameByGameID :many
-SELECT game_id, square_id, user_id, winner, winner_quarter_number, row_index, column_index
+SELECT football_square_game_id, game_id, square_id, user_id, winner, winner_quarter_number, row_index, column_index
 FROM football_square_games football 
 WHERE
   football.game_id = ?
 `
 
 type GetFootballSquareGameByGameIDRow struct {
-	GameID              sql.NullInt32
-	SquareID            sql.NullInt32
-	UserID              sql.NullInt32
-	Winner              sql.NullBool
-	WinnerQuarterNumber sql.NullInt16
-	RowIndex            sql.NullInt32
-	ColumnIndex         sql.NullInt32
+	FootballSquareGameID int32
+	GameID               sql.NullInt32
+	SquareID             sql.NullInt32
+	UserID               sql.NullInt32
+	Winner               sql.NullBool
+	WinnerQuarterNumber  sql.NullInt16
+	RowIndex             sql.NullInt32
+	ColumnIndex          sql.NullInt32
 }
 
 func (q *Queries) GetFootballSquareGameByGameID(ctx context.Context, gameID sql.NullInt32) ([]GetFootballSquareGameByGameIDRow, error) {
@@ -65,6 +100,7 @@ func (q *Queries) GetFootballSquareGameByGameID(ctx context.Context, gameID sql.
 	for rows.Next() {
 		var i GetFootballSquareGameByGameIDRow
 		if err := rows.Scan(
+			&i.FootballSquareGameID,
 			&i.GameID,
 			&i.SquareID,
 			&i.UserID,
