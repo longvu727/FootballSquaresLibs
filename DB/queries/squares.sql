@@ -1,4 +1,4 @@
--- name: CreateSquare :exec
+-- name: CreateSquare :execresult
 INSERT INTO squares (square_guid, square_size) VALUES (?, ?);
 
 -- name: GetSquare :one
