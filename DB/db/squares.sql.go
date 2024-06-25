@@ -10,7 +10,7 @@ import (
 	"database/sql"
 )
 
-const createSquare = `-- name: CreateSquare :exec
+const createSquare = `-- name: CreateSquare :execresult
 INSERT INTO squares (square_guid, square_size) VALUES (?, ?)
 `
 
@@ -19,9 +19,8 @@ type CreateSquareParams struct {
 	SquareSize sql.NullInt32
 }
 
-func (q *Queries) CreateSquare(ctx context.Context, arg CreateSquareParams) error {
-	_, err := q.db.ExecContext(ctx, createSquare, arg.SquareGuid, arg.SquareSize)
-	return err
+func (q *Queries) CreateSquare(ctx context.Context, arg CreateSquareParams) (sql.Result, error) {
+	return q.db.ExecContext(ctx, createSquare, arg.SquareGuid, arg.SquareSize)
 }
 
 const getSquare = `-- name: GetSquare :one
