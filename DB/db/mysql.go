@@ -1,10 +1,10 @@
 package db
 
 import (
-	"FootballSquaresLibs/util"
 	"database/sql"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/longvu727/FootballSquaresLibs/util"
 )
 
 type MySQL struct {
