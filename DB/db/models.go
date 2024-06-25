@@ -33,7 +33,7 @@ type Game struct {
 
 type Square struct {
 	SquareID     int32
-	SquareGuid   sql.NullString
+	SquareGuid   string
 	SquareSize   sql.NullInt32
 	RowPoints    sql.NullString
 	ColumnPoints sql.NullString
@@ -43,7 +43,7 @@ type Square struct {
 
 type User struct {
 	UserID     int32
-	UserGuid   sql.NullString
+	UserGuid   string
 	Ip         sql.NullString
 	DeviceName sql.NullString
 	UserName   sql.NullString

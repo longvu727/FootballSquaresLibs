@@ -15,7 +15,7 @@ INSERT INTO squares (square_guid, square_size) VALUES (?, ?)
 `
 
 type CreateSquareParams struct {
-	SquareGuid sql.NullString
+	SquareGuid string
 	SquareSize sql.NullInt32
 }
 
@@ -32,7 +32,7 @@ WHERE square_id = ?
 
 type GetSquareRow struct {
 	SquareID     int32
-	SquareGuid   sql.NullString
+	SquareGuid   string
 	SquareSize   sql.NullInt32
 	RowPoints    sql.NullString
 	ColumnPoints sql.NullString
