@@ -1,0 +1,5 @@
+{
+    "microservices": {
+        "squaremicroservices": "http://squaremicroservices:3000"
+    }
+}
