@@ -5,26 +5,33 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+
+	"github.com/longvu727/FootballSquaresLibs/util"
 )
 
 type CreateFootballSquareGameResponse struct {
-	GameGUID     string `json:"game_guid"`
-	ErrorMessage string `json:"error_message"`
+	FootballSquaresGameIDs []int64 `json:"football_square_game_ids"`
+	ErrorMessage           string  `json:"error_message"`
 }
 
 type CreateFootballSquareGame struct {
-	SquareSize int    `json:"square_size"`
-	Sport      string `json:"sport"`
-	Response   CreateFootballSquareGameResponse
+	GameID     int32 `json:"game_id"`
+	SquareID   int32 `json:"square_id"`
+	SquareSize int32 `json:"square_size"`
+
+	Response CreateFootballSquareGameResponse
 }
 
 func (service CreateFootballSquareGame) Request() (CreateFootballSquareGameResponse, error) {
 	createFootballSquareGameResponse := CreateFootballSquareGameResponse{}
+	microServicesConfig, _ := util.LoadConfig(".", "microservices", "json")
 
 	client := &http.Client{}
 	serviceJson, _ := json.Marshal(service)
 
-	request, err := http.NewRequest("POST", "http://footballsquaregamemicroservices:3001/CreateFootballSquareGame", bytes.NewBuffer(serviceJson))
+	createFootballSquareGameURL := microServicesConfig.MICROSERVICES["footballsquaregamemicroservices"].BaseUrl + "/CreateFootballSquareGame"
+
+	request, err := http.NewRequest("POST", createFootballSquareGameURL, bytes.NewBuffer(serviceJson))
 	if err != nil {
 		return createFootballSquareGameResponse, err
 	}
@@ -35,7 +42,7 @@ func (service CreateFootballSquareGame) Request() (CreateFootballSquareGameRespo
 	}
 
 	if response.StatusCode != http.StatusOK {
-		errStr := `unable to create square`
+		errStr := `unable to create FootballSquareGame`
 		createFootballSquareGameResponse.ErrorMessage = errStr
 
 		return createFootballSquareGameResponse, errors.New(errStr)
