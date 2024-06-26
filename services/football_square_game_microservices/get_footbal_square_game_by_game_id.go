@@ -10,8 +10,20 @@ import (
 )
 
 type GetFootballSquareGameByGameIDResponse struct {
-	FootballSquaresGameIDs []int64 `json:"football_square_game_ids"`
-	ErrorMessage           string  `json:"error_message"`
+	FootballSquare []FootballSquareGameElement `json:"football_square"`
+
+	ErrorMessage string `json:"error_message"`
+}
+
+type FootballSquareGameElement struct {
+	FootballSquaresGameID int  `json:"football_square_game_id"`
+	ColumnIndex           int  `json:"column_index"`
+	RowIndex              int  `json:"row_index"`
+	WinnerQuaterNumber    int  `json:"winner_quater_number"`
+	Winner                bool `json:"winner"`
+	UserID                int  `json:"user_id"`
+	SquareID              int  `json:"square_id"`
+	GameID                int  `json:"game_id"`
 }
 
 type GetFootballSquareGameByGameID struct {
