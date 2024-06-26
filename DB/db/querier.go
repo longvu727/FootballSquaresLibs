@@ -16,6 +16,7 @@ type Querier interface {
 	GetFootballSquareGame(ctx context.Context, footballSquareGameID int32) (GetFootballSquareGameRow, error)
 	GetFootballSquareGameByGameID(ctx context.Context, gameID sql.NullInt32) ([]GetFootballSquareGameByGameIDRow, error)
 	GetGame(ctx context.Context, gameID int32) (GetGameRow, error)
+	GetGameByGUID(ctx context.Context, gameGuid string) (GetGameByGUIDRow, error)
 	GetSquare(ctx context.Context, squareID int32) (GetSquareRow, error)
 }
 

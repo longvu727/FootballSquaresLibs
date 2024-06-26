@@ -61,3 +61,31 @@ func (q *Queries) GetGame(ctx context.Context, gameID int32) (GetGameRow, error)
 	)
 	return i, err
 }
+
+const getGameByGUID = `-- name: GetGameByGUID :one
+SELECT game_id, game_guid, sport, team_a, team_b
+FROM games 
+WHERE
+  games.game_guid = ?
+`
+
+type GetGameByGUIDRow struct {
+	GameID   int32
+	GameGuid string
+	Sport    sql.NullString
+	TeamA    sql.NullString
+	TeamB    sql.NullString
+}
+
+func (q *Queries) GetGameByGUID(ctx context.Context, gameGuid string) (GetGameByGUIDRow, error) {
+	row := q.db.QueryRowContext(ctx, getGameByGUID, gameGuid)
+	var i GetGameByGUIDRow
+	err := row.Scan(
+		&i.GameID,
+		&i.GameGuid,
+		&i.Sport,
+		&i.TeamA,
+		&i.TeamB,
+	)
+	return i, err
+}
