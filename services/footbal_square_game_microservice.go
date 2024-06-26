@@ -28,7 +28,7 @@ func (service CreateFootballSquareGame) Request(config *util.Config) (CreateFoot
 	client := &http.Client{}
 	serviceJson, _ := json.Marshal(service)
 
-	createFootballSquareGameURL := config.MICROSERVICES["footballsquaregamemicroservices"].BaseUrl + "/CreateFootballSquareGame"
+	createFootballSquareGameURL := config.MICROSERVICESBASEURL["footballsquaregamemicroservices"] + "/CreateFootballSquareGame"
 
 	request, err := http.NewRequest("POST", createFootballSquareGameURL, bytes.NewBuffer(serviceJson))
 	if err != nil {

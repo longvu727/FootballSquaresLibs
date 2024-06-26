@@ -26,7 +26,7 @@ func (service CreateSquare) Request(config *util.Config) (CreateSquareResponse, 
 	client := &http.Client{}
 	serviceJson, _ := json.Marshal(service)
 
-	createSquareUrl := config.MICROSERVICES["squaremicroservices"].BaseUrl + "/CreateSquare"
+	createSquareUrl := config.MICROSERVICESBASEURL["squaremicroservices"] + "/CreateSquare"
 
 	request, err := http.NewRequest("POST", createSquareUrl, bytes.NewBuffer(serviceJson))
 	if err != nil {
