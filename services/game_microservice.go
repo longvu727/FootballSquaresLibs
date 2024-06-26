@@ -26,7 +26,7 @@ type CreateGame struct {
 
 func (service CreateGame) Request() (CreateGameResponse, error) {
 	createGameResponse := CreateGameResponse{}
-	microServicesConfig, _ := util.LoadConfig(".", "microservices", "json")
+	microServicesConfig, _ := util.LoadConfig("./", "microservices", "json")
 
 	client := &http.Client{}
 	serviceJson, _ := json.Marshal(service)

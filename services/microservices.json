@@ -1,7 +1,7 @@
 {
     "microservices": {
         "squaremicroservices": "http://squaremicroservices:3000",
-        "footballsquaregamemicroservices": "http://squaremicroservices:3001",
-        "gamemicroservices": "http://squaremicroservices:3002"
+        "footballsquaregamemicroservices": "http://footballsquaregamemicroservices:3001",
+        "gamemicroservices": "http://gamemicroservices:3002"
     }
 }

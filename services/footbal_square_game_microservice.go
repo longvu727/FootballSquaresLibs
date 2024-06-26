@@ -24,7 +24,7 @@ type CreateFootballSquareGame struct {
 
 func (service CreateFootballSquareGame) Request() (CreateFootballSquareGameResponse, error) {
 	createFootballSquareGameResponse := CreateFootballSquareGameResponse{}
-	microServicesConfig, _ := util.LoadConfig(".", "microservices", "json")
+	microServicesConfig, _ := util.LoadConfig("./", "microservices", "json")
 
 	client := &http.Client{}
 	serviceJson, _ := json.Marshal(service)

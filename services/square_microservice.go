@@ -22,7 +22,7 @@ type CreateSquare struct {
 
 func (service CreateSquare) Request() (CreateSquareResponse, error) {
 	createSquareResponse := CreateSquareResponse{}
-	microServicesConfig, _ := util.LoadConfig(".", "microservices", "json")
+	microServicesConfig, _ := util.LoadConfig("./", "microservices", "json")
 
 	client := &http.Client{}
 	serviceJson, _ := json.Marshal(service)
