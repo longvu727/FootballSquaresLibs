@@ -15,9 +15,9 @@ type CreateFootballSquareGameResponse struct {
 }
 
 type CreateFootballSquareGame struct {
-	GameID     int32 `json:"game_id"`
-	SquareID   int32 `json:"square_id"`
-	SquareSize int32 `json:"square_size"`
+	GameID     int `json:"game_id"`
+	SquareID   int `json:"square_id"`
+	SquareSize int `json:"square_size"`
 
 	Response CreateFootballSquareGameResponse
 }
