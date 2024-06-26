@@ -7,13 +7,9 @@ import (
 // Config stores all configuration of the application.
 // The values are read by viper from a config file or environment variable.
 type Config struct {
-	MySQLDSN      string                  `mapstructure:"MYSQL_DSN"`
-	PORT          string                  `mapstructure:"PORT"`
-	MICROSERVICES map[string]Microservice `mapstructure:"microservices"`
-}
-
-type Microservice struct {
-	BaseUrl string	`mapstructure:"base_url"`
+	MySQLDSN      string            `mapstructure:"MYSQL_DSN"`
+	PORT          string            `mapstructure:"PORT"`
+	MICROSERVICES map[string]string `mapstructure:"microservices"`
 }
 
 // LoadConfig reads configuration from file or environment variables.
