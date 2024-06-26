@@ -14,15 +14,12 @@ type GetFootballSquareGameResponse struct {
 	ErrorMessage           string  `json:"error_message"`
 }
 
-type GetFootballSquareGame struct {
-	GameID     int `json:"game_id"`
-	SquareID   int `json:"square_id"`
-	SquareSize int `json:"square_size"`
-
+type GetFootballSquareGameByGameID struct {
+	GameID   int `json:"game_id"`
 	Response GetFootballSquareGameResponse
 }
 
-func (service GetFootballSquareGame) Request(config *util.Config) (GetFootballSquareGameResponse, error) {
+func (service GetFootballSquareGameByGameID) Request(config *util.Config) (GetFootballSquareGameResponse, error) {
 	getFootballSquareGameResponse := GetFootballSquareGameResponse{}
 
 	client := &http.Client{}
