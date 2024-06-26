@@ -13,7 +13,7 @@ type Config struct {
 }
 
 type Microservice struct {
-	BaseUrl string
+	BaseUrl string	`mapstructure:"base_url"`
 }
 
 // LoadConfig reads configuration from file or environment variables.
