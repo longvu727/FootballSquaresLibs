@@ -22,14 +22,13 @@ type CreateFootballSquareGame struct {
 	Response CreateFootballSquareGameResponse
 }
 
-func (service CreateFootballSquareGame) Request() (CreateFootballSquareGameResponse, error) {
+func (service CreateFootballSquareGame) Request(config *util.Config) (CreateFootballSquareGameResponse, error) {
 	createFootballSquareGameResponse := CreateFootballSquareGameResponse{}
-	microServicesConfig, _ := util.LoadConfig("./", "microservices", "json")
 
 	client := &http.Client{}
 	serviceJson, _ := json.Marshal(service)
 
-	createFootballSquareGameURL := microServicesConfig.MICROSERVICES["footballsquaregamemicroservices"].BaseUrl + "/CreateFootballSquareGame"
+	createFootballSquareGameURL := config.MICROSERVICES["footballsquaregamemicroservices"].BaseUrl + "/CreateFootballSquareGame"
 
 	request, err := http.NewRequest("POST", createFootballSquareGameURL, bytes.NewBuffer(serviceJson))
 	if err != nil {

@@ -20,14 +20,13 @@ type CreateSquare struct {
 	Response   CreateSquareResponse
 }
 
-func (service CreateSquare) Request() (CreateSquareResponse, error) {
+func (service CreateSquare) Request(config *util.Config) (CreateSquareResponse, error) {
 	createSquareResponse := CreateSquareResponse{}
-	microServicesConfig, _ := util.LoadConfig("./", "microservices", "json")
 
 	client := &http.Client{}
 	serviceJson, _ := json.Marshal(service)
 
-	createSquareUrl := microServicesConfig.MICROSERVICES["squaremicroservices"].BaseUrl + "/CreateSquare"
+	createSquareUrl := config.MICROSERVICES["squaremicroservices"].BaseUrl + "/CreateSquare"
 
 	request, err := http.NewRequest("POST", createSquareUrl, bytes.NewBuffer(serviceJson))
 	if err != nil {

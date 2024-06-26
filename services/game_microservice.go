@@ -24,14 +24,13 @@ type CreateGame struct {
 	Response CreateGameResponse
 }
 
-func (service CreateGame) Request() (CreateGameResponse, error) {
+func (service CreateGame) Request(config *util.Config) (CreateGameResponse, error) {
 	createGameResponse := CreateGameResponse{}
-	microServicesConfig, _ := util.LoadConfig("./", "microservices", "json")
 
 	client := &http.Client{}
 	serviceJson, _ := json.Marshal(service)
 
-	createGameUrl := microServicesConfig.MICROSERVICES["gamemicroservices"].BaseUrl + "/CreateGame"
+	createGameUrl := config.MICROSERVICES["gamemicroservices"].BaseUrl + "/CreateGame"
 
 	request, err := http.NewRequest("POST", createGameUrl, bytes.NewBuffer(serviceJson))
 	if err != nil {
