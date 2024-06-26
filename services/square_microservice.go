@@ -10,7 +10,7 @@ import (
 )
 
 type CreateSquareResponse struct {
-	SquareID     string `json:"square_id"`
+	SquareID     int    `json:"square_id"`
 	ErrorMessage string `json:"error_message"`
 }
 
