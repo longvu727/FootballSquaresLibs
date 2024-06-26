@@ -21,7 +21,7 @@ type GetGameByGUIDResponse struct {
 }
 
 type GetGameByGUID struct {
-	GameGUID int64 `json:"game_guid"`
+	GameGUID string `json:"game_guid"`
 	Response GetGameResponse
 }
 
