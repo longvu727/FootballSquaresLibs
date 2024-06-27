@@ -10,7 +10,7 @@ import (
 )
 
 type GetFootballSquareGameByGameIDResponse struct {
-	FootballSquare []FootballSquareGameElement `json:"football_square"`
+	FootballSquare []FootballSquareGameElement `json:"square"`
 
 	ErrorMessage string `json:"error_message"`
 }
