@@ -9,23 +9,26 @@ import (
 	"github.com/longvu727/FootballSquaresLibs/util"
 )
 
-type GetGameResponse struct {
+type GetGame struct {
 	GameGUID   string `json:"game_guid"`
 	GameID     int64  `json:"game_id"`
 	Sport      string `json:"sport"`
 	SquareSize int32  `json:"square_size"`
 	TeamA      string `json:"team_a"`
 	TeamB      string `json:"team_b"`
+}
 
+type GetGameResponse struct {
+	GetGame
 	ErrorMessage string `json:"error_message"`
 }
 
-type GetGame struct {
+type GetGameService struct {
 	GameID   int64 `json:"game_id"`
 	Response GetGameResponse
 }
 
-func (service GetGame) Request(config *util.Config) (GetGameResponse, error) {
+func (service GetGameService) Request(config *util.Config) (GetGameResponse, error) {
 	getGameResponse := GetGameResponse{}
 
 	client := &http.Client{}

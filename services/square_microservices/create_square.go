@@ -14,13 +14,13 @@ type CreateSquareResponse struct {
 	ErrorMessage string `json:"error_message"`
 }
 
-type CreateSquare struct {
+type CreateSquareService struct {
 	SquareSize int    `json:"square_size"`
 	Sport      string `json:"sport"`
 	Response   CreateSquareResponse
 }
 
-func (service CreateSquare) Request(config *util.Config) (CreateSquareResponse, error) {
+func (service CreateSquareService) Request(config *util.Config) (CreateSquareResponse, error) {
 	createSquareResponse := CreateSquareResponse{}
 
 	client := &http.Client{}

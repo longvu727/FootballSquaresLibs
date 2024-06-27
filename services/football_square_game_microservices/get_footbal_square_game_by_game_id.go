@@ -14,7 +14,7 @@ type GetFootballSquareGameByGameID struct {
 }
 
 type GetFootballSquareGameByGameIDResponse struct {
-	GetFootballSquareGameByGameID GetFootballSquareGameByGameID
+	GetFootballSquareGameByGameID
 	ErrorMessage string `json:"error_message"`
 }
 

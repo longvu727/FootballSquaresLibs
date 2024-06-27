@@ -14,7 +14,7 @@ type CreateFootballSquareGameResponse struct {
 	ErrorMessage           string  `json:"error_message"`
 }
 
-type CreateFootballSquareGame struct {
+type CreateFootballSquareGameService struct {
 	GameID     int `json:"game_id"`
 	SquareID   int `json:"square_id"`
 	SquareSize int `json:"square_size"`
@@ -22,7 +22,7 @@ type CreateFootballSquareGame struct {
 	Response CreateFootballSquareGameResponse
 }
 
-func (service CreateFootballSquareGame) Request(config *util.Config) (CreateFootballSquareGameResponse, error) {
+func (service CreateFootballSquareGameService) Request(config *util.Config) (CreateFootballSquareGameResponse, error) {
 	createFootballSquareGameResponse := CreateFootballSquareGameResponse{}
 
 	client := &http.Client{}

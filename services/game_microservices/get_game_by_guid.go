@@ -19,7 +19,7 @@ type GetGameByGUID struct {
 }
 
 type GetGameByGUIDResponse struct {
-	GetGameByGUID GetGameByGUID
+	GetGameByGUID
 	ErrorMessage  string `json:"error_message"`
 }
 

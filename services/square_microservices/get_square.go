@@ -18,7 +18,7 @@ type GetSquare struct {
 }
 
 type GetSquareResponse struct {
-	GetSquare    GetSquare
+	GetSquare
 	ErrorMessage string `json:"error_message"`
 }
 
