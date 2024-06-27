@@ -9,22 +9,25 @@ import (
 	"github.com/longvu727/FootballSquaresLibs/util"
 )
 
-type GetSquareResponse struct {
+type GetSquare struct {
 	SquareID     int    `json:"square_id"`
 	SquareGUID   string `json:"square_guid"`
 	SquareSize   int    `json:"square_size"`
 	RowPoints    string `json:"row_points"`
 	ColumnPoints string `json:"column_points"`
+}
 
+type GetSquareResponse struct {
+	GetSquare    GetSquare
 	ErrorMessage string `json:"error_message"`
 }
 
-type GetSquare struct {
+type GetSquareService struct {
 	SquareID int `json:"square_id"`
 	Response GetSquareResponse
 }
 
-func (service GetSquare) Request(config *util.Config) (GetSquareResponse, error) {
+func (service GetSquareService) Request(config *util.Config) (GetSquareResponse, error) {
 	getSquareResponse := GetSquareResponse{}
 
 	client := &http.Client{}
