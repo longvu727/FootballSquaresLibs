@@ -9,17 +9,8 @@ import (
 	"github.com/longvu727/FootballSquaresLibs/util"
 )
 
-type GetGameByGUID struct {
-	GameGUID   string `json:"game_guid"`
-	GameID     int64  `json:"game_id"`
-	Sport      string `json:"sport"`
-	SquareSize int32  `json:"square_size"`
-	TeamA      string `json:"team_a"`
-	TeamB      string `json:"team_b"`
-}
-
 type GetGameByGUIDResponse struct {
-	GetGameByGUID
+	Game
 	ErrorMessage  string `json:"error_message"`
 }
 
