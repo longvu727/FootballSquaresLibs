@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
+	"log"
 	"net/http"
 
 	"github.com/longvu727/FootballSquaresLibs/util"
@@ -57,7 +58,11 @@ func (service GetFootballSquareGameByGameID) Request(config *util.Config) (GetFo
 	}
 
 	defer response.Body.Close()
-	json.NewDecoder(response.Body).Decode(&getFootballSquareGameByGameIDResponse)
+
+	err = json.NewDecoder(response.Body).Decode(&getFootballSquareGameByGameIDResponse)
+	if err != nil {
+		log.Print(err.Error())
+	}
 
 	return getFootballSquareGameByGameIDResponse, nil
 }
