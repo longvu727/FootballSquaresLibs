@@ -10,11 +10,9 @@ import (
 	"github.com/longvu727/FootballSquaresLibs/util"
 )
 
-type FootballSquares []FootballSquareGameElement
-
 type GetFootballSquareGameByGameIDResponse struct {
-	FootballSquares
-	ErrorMessage string `json:"error_message"`
+	FootballSquares []FootballSquareGameElement `json:"football_squares"`
+	ErrorMessage    string                      `json:"error_message"`
 }
 
 type GetFootballSquareGameByGameIDService struct {
