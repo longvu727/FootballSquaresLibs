@@ -22,7 +22,6 @@ type GetGameByGUIDResponse struct {
 
 type GetGameByGUID struct {
 	GameGUID string `json:"game_guid"`
-	Response GetGameResponse
 }
 
 func (service GetGameByGUID) Request(config *util.Config) (GetGameByGUIDResponse, error) {
