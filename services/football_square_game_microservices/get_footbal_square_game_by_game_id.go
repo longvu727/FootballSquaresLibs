@@ -9,9 +9,8 @@ import (
 
 	"github.com/longvu727/FootballSquaresLibs/util"
 )
-type GetFootballSquareGameByGameID struct {
-	FootballSquares []FootballSquareGameElement `json:"square"`
-}
+
+type GetFootballSquareGameByGameID []FootballSquareGameElement
 
 type GetFootballSquareGameByGameIDResponse struct {
 	GetFootballSquareGameByGameID
