@@ -9,5 +9,7 @@ type FootballSquareGameElement struct {
 	UserID                int  `json:"user_id"`
 	SquareID              int  `json:"square_id"`
 	GameID                int  `json:"game_id"`
-}
 
+	UserName  string `json:"user_name"`
+	UserAlias string `json:"user_alias"`
+}
