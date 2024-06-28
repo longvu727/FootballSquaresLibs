@@ -4,6 +4,7 @@ go 1.22.2
 
 require (
 	github.com/go-sql-driver/mysql v1.8.1
+	github.com/golang/mock v1.6.0
 	github.com/spf13/viper v1.19.0
 	github.com/stretchr/testify v1.9.0
 )
