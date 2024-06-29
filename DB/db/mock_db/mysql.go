@@ -1,19 +1,14 @@
 package mock_db
 
 import (
-	sql "database/sql"
-
 	gomock "github.com/golang/mock/gomock"
+	"github.com/longvu727/FootballSquaresLibs/DB/db"
 )
 
-type MySQL struct {
-	DB      *sql.DB
-	QUERIES *MockQuerier
-}
+func NewMockMySQL(ctrl *gomock.Controller) (*db.MySQL, error) {
+	mySQL := &db.MySQL{}
 
-func NewMySQLMock(ctrl *gomock.Controller) (*MySQL, error) {
-	mySQL := &MySQL{}
-	mySQL.QUERIES = NewMockQuerier(ctrl)
+	mySQL.QUERIES = db.New(NewMockDBTX(ctrl))
 
 	return mySQL, nil
 }
