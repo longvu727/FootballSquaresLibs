@@ -11,13 +11,15 @@ import (
 
 type Querier interface {
 	CreateFootballSquareGame(ctx context.Context, arg CreateFootballSquareGameParams) (int64, error)
-	CreateGames(ctx context.Context, arg CreateGamesParams) (sql.Result, error)
-	CreateSquare(ctx context.Context, arg CreateSquareParams) (sql.Result, error)
+	CreateGames(ctx context.Context, arg CreateGamesParams) (int64, error)
+	CreateSquare(ctx context.Context, arg CreateSquareParams) (int64, error)
+	CreateUser(ctx context.Context, arg CreateUserParams) (int64, error)
 	GetFootballSquareGame(ctx context.Context, footballSquareGameID int32) (GetFootballSquareGameRow, error)
 	GetFootballSquareGameByGameID(ctx context.Context, gameID sql.NullInt32) ([]GetFootballSquareGameByGameIDRow, error)
 	GetGame(ctx context.Context, gameID int32) (GetGameRow, error)
 	GetGameByGUID(ctx context.Context, gameGuid string) (GetGameByGUIDRow, error)
 	GetSquare(ctx context.Context, squareID int32) (GetSquareRow, error)
+	GetUser(ctx context.Context, userID int32) (GetUserRow, error)
 }
 
 var _ Querier = (*Queries)(nil)
