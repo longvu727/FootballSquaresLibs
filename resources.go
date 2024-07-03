@@ -1,4 +1,4 @@
-package util
+package FootballSquaresLibs
 
 import (
 	"context"

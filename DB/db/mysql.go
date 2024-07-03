@@ -12,16 +12,16 @@ type MySQL interface {
 }
 
 type MySQLQueries struct {
-	DB      *sql.DB
+	DB *sql.DB
 	*Queries
 }
 
 func NewMySQL(config util.Config) (MySQL, error) {
-	
+
 	dbconn, _ := sql.Open("mysql", config.MySQLDSN)
 	return &MySQLQueries{
-		DB: dbconn,
-		Queries: New(dbconn),
-	},
-	nil
+			DB:      dbconn,
+			Queries: New(dbconn),
+		},
+		nil
 }
