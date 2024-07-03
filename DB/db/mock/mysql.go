@@ -52,10 +52,10 @@ func (mr *MockMySQLMockRecorder) CreateFootballSquareGame(arg0, arg1 interface{}
 }
 
 // CreateGames mocks base method.
-func (m *MockMySQL) CreateGames(arg0 context.Context, arg1 db.CreateGamesParams) (sql.Result, error) {
+func (m *MockMySQL) CreateGames(arg0 context.Context, arg1 db.CreateGamesParams) (int64, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "CreateGames", arg0, arg1)
-	ret0, _ := ret[0].(sql.Result)
+	ret0, _ := ret[0].(int64)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -67,10 +67,10 @@ func (mr *MockMySQLMockRecorder) CreateGames(arg0, arg1 interface{}) *gomock.Cal
 }
 
 // CreateSquare mocks base method.
-func (m *MockMySQL) CreateSquare(arg0 context.Context, arg1 db.CreateSquareParams) (sql.Result, error) {
+func (m *MockMySQL) CreateSquare(arg0 context.Context, arg1 db.CreateSquareParams) (int64, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "CreateSquare", arg0, arg1)
-	ret0, _ := ret[0].(sql.Result)
+	ret0, _ := ret[0].(int64)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -79,6 +79,21 @@ func (m *MockMySQL) CreateSquare(arg0 context.Context, arg1 db.CreateSquareParam
 func (mr *MockMySQLMockRecorder) CreateSquare(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateSquare", reflect.TypeOf((*MockMySQL)(nil).CreateSquare), arg0, arg1)
+}
+
+// CreateUser mocks base method.
+func (m *MockMySQL) CreateUser(arg0 context.Context, arg1 db.CreateUserParams) (int64, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CreateUser", arg0, arg1)
+	ret0, _ := ret[0].(int64)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateUser indicates an expected call of CreateUser.
+func (mr *MockMySQLMockRecorder) CreateUser(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateUser", reflect.TypeOf((*MockMySQL)(nil).CreateUser), arg0, arg1)
 }
 
 // GetFootballSquareGame mocks base method.
@@ -154,4 +169,19 @@ func (m *MockMySQL) GetSquare(arg0 context.Context, arg1 int32) (db.GetSquareRow
 func (mr *MockMySQLMockRecorder) GetSquare(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetSquare", reflect.TypeOf((*MockMySQL)(nil).GetSquare), arg0, arg1)
+}
+
+// GetUser mocks base method.
+func (m *MockMySQL) GetUser(arg0 context.Context, arg1 int32) (db.GetUserRow, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetUser", arg0, arg1)
+	ret0, _ := ret[0].(db.GetUserRow)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetUser indicates an expected call of GetUser.
+func (mr *MockMySQLMockRecorder) GetUser(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUser", reflect.TypeOf((*MockMySQL)(nil).GetUser), arg0, arg1)
 }
