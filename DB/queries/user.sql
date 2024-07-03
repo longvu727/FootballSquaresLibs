@@ -1,4 +1,4 @@
--- name: CreateUser :execresult
+-- name: CreateUser :execlastid
 INSERT INTO users (user_guid, ip, device_name, user_name, alias)
     VALUES (?, ?, ?, ?, ?);
 
