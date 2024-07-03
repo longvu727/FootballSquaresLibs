@@ -7,7 +7,6 @@ import (
 	"github.com/longvu727/FootballSquaresLibs/util"
 )
 
-// Server serves gRPC requests for our banking service.
 type Resources struct {
 	config  util.Config
 	db      db.MySQL
