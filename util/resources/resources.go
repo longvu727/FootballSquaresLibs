@@ -8,15 +8,15 @@ import (
 )
 
 type Resources struct {
-	config  util.Config
-	db      db.MySQL
-	context context.Context
+	util.Config
+	db.MySQL
+	context.Context
 }
 
-func NewResources(config util.Config, db db.MySQL, context context.Context) *Resources {
+func NewResources(config util.Config, mySQL db.MySQL, context context.Context) *Resources {
 	return &Resources{
-		config:  config,
-		db:      db,
-		context: context,
+		Config:  config,
+		MySQL:   mySQL,
+		Context: context,
 	}
 }
