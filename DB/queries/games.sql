@@ -1,4 +1,4 @@
--- name: CreateGames :execlastid
+-- name: CreateGame :execlastid
 INSERT INTO games (
   game_guid, sport, team_a, team_b
 ) VALUES (

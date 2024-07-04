@@ -10,7 +10,7 @@ import (
 	"database/sql"
 )
 
-const createGames = `-- name: CreateGames :execlastid
+const createGame = `-- name: CreateGame :execlastid
 INSERT INTO games (
   game_guid, sport, team_a, team_b
 ) VALUES (
@@ -18,15 +18,15 @@ INSERT INTO games (
 )
 `
 
-type CreateGamesParams struct {
+type CreateGameParams struct {
 	GameGuid string
 	Sport    sql.NullString
 	TeamA    sql.NullString
 	TeamB    sql.NullString
 }
 
-func (q *Queries) CreateGames(ctx context.Context, arg CreateGamesParams) (int64, error) {
-	result, err := q.db.ExecContext(ctx, createGames,
+func (q *Queries) CreateGame(ctx context.Context, arg CreateGameParams) (int64, error) {
+	result, err := q.db.ExecContext(ctx, createGame,
 		arg.GameGuid,
 		arg.Sport,
 		arg.TeamA,

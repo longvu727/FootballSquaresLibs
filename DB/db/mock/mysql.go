@@ -51,19 +51,19 @@ func (mr *MockMySQLMockRecorder) CreateFootballSquareGame(arg0, arg1 interface{}
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateFootballSquareGame", reflect.TypeOf((*MockMySQL)(nil).CreateFootballSquareGame), arg0, arg1)
 }
 
-// CreateGames mocks base method.
-func (m *MockMySQL) CreateGames(arg0 context.Context, arg1 db.CreateGamesParams) (int64, error) {
+// CreateGame mocks base method.
+func (m *MockMySQL) CreateGame(arg0 context.Context, arg1 db.CreateGameParams) (int64, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "CreateGames", arg0, arg1)
+	ret := m.ctrl.Call(m, "CreateGame", arg0, arg1)
 	ret0, _ := ret[0].(int64)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// CreateGames indicates an expected call of CreateGames.
-func (mr *MockMySQLMockRecorder) CreateGames(arg0, arg1 interface{}) *gomock.Call {
+// CreateGame indicates an expected call of CreateGame.
+func (mr *MockMySQLMockRecorder) CreateGame(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateGames", reflect.TypeOf((*MockMySQL)(nil).CreateGames), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateGame", reflect.TypeOf((*MockMySQL)(nil).CreateGame), arg0, arg1)
 }
 
 // CreateSquare mocks base method.

@@ -11,7 +11,7 @@ import (
 
 type Querier interface {
 	CreateFootballSquareGame(ctx context.Context, arg CreateFootballSquareGameParams) (int64, error)
-	CreateGames(ctx context.Context, arg CreateGamesParams) (int64, error)
+	CreateGame(ctx context.Context, arg CreateGameParams) (int64, error)
 	CreateSquare(ctx context.Context, arg CreateSquareParams) (int64, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (int64, error)
 	GetFootballSquareGame(ctx context.Context, footballSquareGameID int32) (GetFootballSquareGameRow, error)
