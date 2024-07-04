@@ -18,10 +18,10 @@ type MySQLQueries struct {
 
 func NewMySQL(config util.Config) (MySQL, error) {
 
-	dbconn, _ := sql.Open("mysql", config.MySQLDSN)
+	dbconn, err := sql.Open("mysql", config.MySQLDSN)
 	return &MySQLQueries{
 			DB:      dbconn,
 			Queries: New(dbconn),
 		},
-		nil
+		err
 }
