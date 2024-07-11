@@ -5,6 +5,6 @@ type User struct {
 	UserGUID   string `json:"user_guid"`
 	IP         string `json:"ip"`
 	DeviceName string `json:"device_name"`
-	User_name  string `json:"user_name"`
+	UserName   string `json:"user_name"`
 	Alias      string `json:"alias"`
 }
