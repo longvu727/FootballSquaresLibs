@@ -68,13 +68,14 @@ func (q *Queries) GetUser(ctx context.Context, userID int32) (GetUserRow, error)
 }
 
 const getUserByGUID = `-- name: GetUserByGUID :one
-SELECT user_guid, ip, device_name, user_name, alias
+SELECT user_id, user_guid, ip, device_name, user_name, alias
 FROM users 
 WHERE
   users.user_guid = ?
 `
 
 type GetUserByGUIDRow struct {
+	UserID     int32
 	UserGuid   string
 	Ip         sql.NullString
 	DeviceName sql.NullString
@@ -86,6 +87,7 @@ func (q *Queries) GetUserByGUID(ctx context.Context, userGuid string) (GetUserBy
 	row := q.db.QueryRowContext(ctx, getUserByGUID, userGuid)
 	var i GetUserByGUIDRow
 	err := row.Scan(
+		&i.UserID,
 		&i.UserGuid,
 		&i.Ip,
 		&i.DeviceName,
