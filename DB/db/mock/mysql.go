@@ -185,3 +185,18 @@ func (mr *MockMySQLMockRecorder) GetUser(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUser", reflect.TypeOf((*MockMySQL)(nil).GetUser), arg0, arg1)
 }
+
+// GetUserByGUID mocks base method.
+func (m *MockMySQL) GetUserByGUID(arg0 context.Context, arg1 string) (db.GetUserByGUIDRow, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetUserByGUID", arg0, arg1)
+	ret0, _ := ret[0].(db.GetUserByGUIDRow)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetUserByGUID indicates an expected call of GetUserByGUID.
+func (mr *MockMySQLMockRecorder) GetUserByGUID(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUserByGUID", reflect.TypeOf((*MockMySQL)(nil).GetUserByGUID), arg0, arg1)
+}
