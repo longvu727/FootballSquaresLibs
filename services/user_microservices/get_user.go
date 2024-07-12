@@ -25,7 +25,7 @@ func (service GetUserService) Request(config *util.Config) (GetUserResponse, err
 	client := &http.Client{}
 	serviceJson, _ := json.Marshal(service)
 
-	getUserUrl := config.MICROSERVICESBASEURL["Usermicroservices"] + "/GetUser"
+	getUserUrl := config.MICROSERVICESBASEURL["usermicroservices"] + "/GetUser"
 
 	request, err := http.NewRequest("POST", getUserUrl, bytes.NewBuffer(serviceJson))
 	if err != nil {
