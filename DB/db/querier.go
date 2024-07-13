@@ -21,6 +21,7 @@ type Querier interface {
 	GetSquare(ctx context.Context, squareID int32) (GetSquareRow, error)
 	GetUser(ctx context.Context, userID int32) (GetUserRow, error)
 	GetUserByGUID(ctx context.Context, userGuid string) (GetUserByGUIDRow, error)
+	ReserveFootballSquareByGameIDRowIndexColumnIndex(ctx context.Context, arg ReserveFootballSquareByGameIDRowIndexColumnIndexParams) error
 }
 
 var _ Querier = (*Queries)(nil)

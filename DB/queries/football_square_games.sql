@@ -20,3 +20,10 @@ SELECT football_square_game_id, game_id, square_id, user_id, winner, winner_quar
 FROM football_square_games football 
 WHERE
   football.football_square_game_id = ?;
+
+-- name: ReserveFootballSquareByGameIDRowIndexColumnIndex :exec
+UPDATE football_square_games football
+SET football.user_id = ?
+WHERE football.football_square_game_id = ?
+  AND football.row_index = ?
+  AND football.column_index = ?;

@@ -200,3 +200,17 @@ func (mr *MockMySQLMockRecorder) GetUserByGUID(arg0, arg1 interface{}) *gomock.C
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUserByGUID", reflect.TypeOf((*MockMySQL)(nil).GetUserByGUID), arg0, arg1)
 }
+
+// ReserveFootballSquareByGameIDRowIndexColumnIndex mocks base method.
+func (m *MockMySQL) ReserveFootballSquareByGameIDRowIndexColumnIndex(arg0 context.Context, arg1 db.ReserveFootballSquareByGameIDRowIndexColumnIndexParams) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ReserveFootballSquareByGameIDRowIndexColumnIndex", arg0, arg1)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// ReserveFootballSquareByGameIDRowIndexColumnIndex indicates an expected call of ReserveFootballSquareByGameIDRowIndexColumnIndex.
+func (mr *MockMySQLMockRecorder) ReserveFootballSquareByGameIDRowIndexColumnIndex(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ReserveFootballSquareByGameIDRowIndexColumnIndex", reflect.TypeOf((*MockMySQL)(nil).ReserveFootballSquareByGameIDRowIndexColumnIndex), arg0, arg1)
+}

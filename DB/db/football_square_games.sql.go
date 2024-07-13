@@ -128,3 +128,28 @@ func (q *Queries) GetFootballSquareGameByGameID(ctx context.Context, gameID sql.
 	}
 	return items, nil
 }
+
+const reserveFootballSquareByGameIDRowIndexColumnIndex = `-- name: ReserveFootballSquareByGameIDRowIndexColumnIndex :exec
+UPDATE football_square_games football
+SET football.user_id = ?
+WHERE football.football_square_game_id = ?
+  AND football.row_index = ?
+  AND football.column_index = ?
+`
+
+type ReserveFootballSquareByGameIDRowIndexColumnIndexParams struct {
+	UserID               sql.NullInt32
+	FootballSquareGameID int32
+	RowIndex             sql.NullInt32
+	ColumnIndex          sql.NullInt32
+}
+
+func (q *Queries) ReserveFootballSquareByGameIDRowIndexColumnIndex(ctx context.Context, arg ReserveFootballSquareByGameIDRowIndexColumnIndexParams) error {
+	_, err := q.db.ExecContext(ctx, reserveFootballSquareByGameIDRowIndexColumnIndex,
+		arg.UserID,
+		arg.FootballSquareGameID,
+		arg.RowIndex,
+		arg.ColumnIndex,
+	)
+	return err
+}
