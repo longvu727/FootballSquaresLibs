@@ -10,7 +10,7 @@ import (
 )
 
 type ReserveFootballSquareResponse struct {
-	Acknowledged bool   `json:"acknowledged"`
+	Reserved     bool   `json:"reserved"`
 	ErrorMessage string `json:"error_message"`
 }
 
