@@ -1,0 +1,1 @@
+ALTER TABLE `football_square_games` ADD INDEX(`game_id`, `row_index`, `column_index`);

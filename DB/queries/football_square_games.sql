@@ -24,6 +24,6 @@ WHERE
 -- name: ReserveFootballSquareByGameIDRowIndexColumnIndex :exec
 UPDATE football_square_games football
 SET football.user_id = ?
-WHERE football.football_square_game_id = ?
+WHERE football.game_id = ?
   AND football.row_index = ?
   AND football.column_index = ?;
