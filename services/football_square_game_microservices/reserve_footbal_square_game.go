@@ -15,7 +15,8 @@ type ReserveFootballSquareResponse struct {
 }
 
 type ReserveFootballSquareService struct {
-	GameGUID    int `json:"game_guid"`
+	GameID      int `json:"game_id"`
+	UserID      int `json:"user_id"`
 	RowIndex    int `json:"row_index"`
 	ColumnIndex int `json:"column_index"`
 
