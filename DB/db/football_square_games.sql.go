@@ -135,6 +135,7 @@ SET football.user_id = ?
 WHERE football.game_id = ?
   AND football.row_index = ?
   AND football.column_index = ?
+  AND football.user_id is NULL
 `
 
 type ReserveFootballSquareByGameIDRowIndexColumnIndexParams struct {
