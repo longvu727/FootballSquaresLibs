@@ -7,6 +7,7 @@ import (
 // Config stores all configuration of the application.
 // The values are read by viper from a config file or environment variable.
 type Config struct {
+	REDISURL             string            `mapstructure:"REDIS_URL"`
 	MySQLDSN             string            `mapstructure:"MYSQL_DSN"`
 	PORT                 string            `mapstructure:"PORT"`
 	MICROSERVICESBASEURL map[string]string `mapstructure:"microservices"`
