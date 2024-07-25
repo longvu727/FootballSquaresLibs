@@ -7,8 +7,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/longvu727/FootballSquaresLibs/util"
 	"github.com/longvu727/FootballSquaresLibs/services"
+	"github.com/longvu727/FootballSquaresLibs/util"
 )
 
 type GetFootballSquareGameByGameIDService interface {
@@ -21,11 +21,13 @@ type GetFootballSquareGameByGameIDResponse struct {
 }
 
 type GetFootballSquareGameByGameID struct {
-	GameID   int `json:"game_id"`
+	GameID int `json:"game_id"`
 }
 
-func NewGetFootballSquareGameByGameIDService() GetFootballSquareGameByGameIDService {
-	return &GetFootballSquareGameByGameID{}
+func NewGetFootballSquareGameByGameIDService(gameID int) GetFootballSquareGameByGameIDService {
+	return &GetFootballSquareGameByGameID{
+		GameID: gameID,
+	}
 }
 
 func (service GetFootballSquareGameByGameID) Request(config *util.Config) (services.Response, error) {
