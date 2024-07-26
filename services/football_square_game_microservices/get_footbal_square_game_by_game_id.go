@@ -8,20 +8,28 @@ import (
 	"net/http"
 
 	"github.com/longvu727/FootballSquaresLibs/util"
+	"github.com/longvu727/FootballSquaresLibs/services"
 )
+
+type GetFootballSquareGameByGameIDService interface {
+	services.Services
+}
 
 type GetFootballSquareGameByGameIDResponse struct {
 	FootballSquares []FootballSquareGameElement `json:"football_squares"`
 	ErrorMessage    string                      `json:"error_message"`
 }
 
-type GetFootballSquareGameByGameIDService struct {
+type GetFootballSquareGameByGameID struct {
 	GameID   int `json:"game_id"`
-	Response GetFootballSquareGameByGameIDResponse
 }
 
-func (service GetFootballSquareGameByGameIDService) Request(config *util.Config) (GetFootballSquareGameByGameIDResponse, error) {
-	getFootballSquareGameByGameIDResponse := GetFootballSquareGameByGameIDResponse{}
+func NewGetFootballSquareGameByGameIDService() GetFootballSquareGameByGameIDService {
+	return &GetFootballSquareGameByGameID{}
+}
+
+func (service GetFootballSquareGameByGameID) Request(config *util.Config) (services.Response, error) {
+	getFootballSquareGameByGameIDResponse := &GetFootballSquareGameByGameIDResponse{}
 
 	client := &http.Client{}
 	serviceJson, _ := json.Marshal(service)
