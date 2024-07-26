@@ -6,31 +6,24 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/longvu727/FootballSquaresLibs/services"
 	"github.com/longvu727/FootballSquaresLibs/util"
 )
-
-type ReserveFootballSquareService interface {
-	services.Services
-}
 
 type ReserveFootballSquareResponse struct {
 	Reserved     bool   `json:"reserved"`
 	ErrorMessage string `json:"error_message"`
 }
 
-type ReserveFootballSquare struct {
+type ReserveFootballSquareService struct {
 	GameID      int `json:"game_id"`
 	UserID      int `json:"user_id"`
 	RowIndex    int `json:"row_index"`
 	ColumnIndex int `json:"column_index"`
+
+	Response ReserveFootballSquareResponse
 }
 
-func NewReserveFootballSquareService() ReserveFootballSquareService {
-	return &ReserveFootballSquare{}
-}
-
-func (service ReserveFootballSquare) Request(config *util.Config) (services.Response, error) {
+func (service ReserveFootballSquareService) Request(config *util.Config) (ReserveFootballSquareResponse, error) {
 	reserveFootballSquareGameResponse := ReserveFootballSquareResponse{}
 
 	client := &http.Client{}
