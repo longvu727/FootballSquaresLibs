@@ -45,7 +45,7 @@ func (service ServiceClient) CreateUser(config *util.Config, request CreateUserR
 	createUserUrl := config.MICROSERVICESBASEURL["usermicroservices"] + "/CreateUser"
 	response := CreateUserResponse{}
 
-	err := service.Post(createUserUrl, request, response)
+	err := service.Post(createUserUrl, request, &response)
 
 	return response, err
 }
@@ -54,7 +54,7 @@ func (service ServiceClient) GetUserByGUID(config *util.Config, request GetUserB
 	getUserByGUIDUrl := config.MICROSERVICESBASEURL["usermicroservices"] + "/GetUserByGUID"
 	response := GetUserByGUIDResponse{}
 
-	err := service.Post(getUserByGUIDUrl, request, response)
+	err := service.Post(getUserByGUIDUrl, request, &response)
 
 	return response, err
 }
@@ -63,7 +63,7 @@ func (service ServiceClient) GetUser(config *util.Config, request GetUserRequest
 	getUserUrl := config.MICROSERVICESBASEURL["usermicroservices"] + "/GetUser"
 	response := GetUserResponse{}
 
-	err := service.Post(getUserUrl, request, response)
+	err := service.Post(getUserUrl, request, &response)
 
 	return response, err
 }
