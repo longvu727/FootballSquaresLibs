@@ -48,7 +48,7 @@ type ReserveFootballSquare struct {
 	ColumnIndex int `json:"column_index"`
 }
 
-func (service *ServiceClient) RequestCreateFootballSquareGame(config *util.Config, request CreateFootballSquareGame) (CreateFootballSquareGameResponse, error) {
+func (service *ServiceClient) CreateFootballSquareGame(config *util.Config, request CreateFootballSquareGame) (CreateFootballSquareGameResponse, error) {
 	createFootballSquareGameURL := config.MICROSERVICESBASEURL["footballsquaregamemicroservices"] + "/CreateFootballSquareGame"
 	response := CreateFootballSquareGameResponse{}
 
@@ -57,7 +57,7 @@ func (service *ServiceClient) RequestCreateFootballSquareGame(config *util.Confi
 	return response, err
 }
 
-func (service *ServiceClient) RequestGetFootballSquareGameByGameID(config *util.Config, request GetFootballSquareGameByGameID) (GetFootballSquareGameByGameIDResponse, error) {
+func (service *ServiceClient) GetFootballSquareGameByGameID(config *util.Config, request GetFootballSquareGameByGameID) (GetFootballSquareGameByGameIDResponse, error) {
 	getFootballSquareGameByGameIDURL := config.MICROSERVICESBASEURL["footballsquaregamemicroservices"] + "/GetFootballSquareGameByGameID"
 	response := GetFootballSquareGameByGameIDResponse{}
 
@@ -66,7 +66,7 @@ func (service *ServiceClient) RequestGetFootballSquareGameByGameID(config *util.
 	return response, err
 }
 
-func (service *ServiceClient) RequestReserveFootballSquare(config *util.Config, request ReserveFootballSquare) (ReserveFootballSquareResponse, error) {
+func (service *ServiceClient) ReserveFootballSquare(config *util.Config, request ReserveFootballSquare) (ReserveFootballSquareResponse, error) {
 	reserveFootballSquareGameURL := config.MICROSERVICESBASEURL["footballsquaregamemicroservices"] + "/ReserveFootballSquare"
 	reserveFootballSquareGameResponse := ReserveFootballSquareResponse{}
 
