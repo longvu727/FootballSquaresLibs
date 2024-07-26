@@ -11,9 +11,9 @@ import (
 
 type Services interface {
 	Post(enpoint string, request interface{}, response interface{}) error
-	RequestCreateFootballSquareGame(config *util.Config) (CreateFootballSquareGameResponse, error)
-	RequestGetFootballSquareGameByGameID(config *util.Config) (GetFootballSquareGameByGameIDResponse, error)
-	RequestReserveFootballSquare(config *util.Config) (ReserveFootballSquareResponse, error)
+	RequestCreateFootballSquareGame(config *util.Config, request CreateFootballSquareGame) (CreateFootballSquareGameResponse, error)
+	RequestGetFootballSquareGameByGameID(config *util.Config, request GetFootballSquareGameByGameID) (GetFootballSquareGameByGameIDResponse, error)
+	RequestReserveFootballSquare(config *util.Config, request ReserveFootballSquare) (ReserveFootballSquareResponse, error)
 }
 
 type ServiceClient struct {

@@ -48,44 +48,29 @@ type ReserveFootballSquare struct {
 	ColumnIndex int `json:"column_index"`
 }
 
-func (service *ServiceClient) RequestCreateFootballSquareGame(config *util.Config) (CreateFootballSquareGameResponse, error) {
-	createFootballSquareGameResponse := CreateFootballSquareGameResponse{}
+func (service *ServiceClient) RequestCreateFootballSquareGame(config *util.Config, request CreateFootballSquareGame) (CreateFootballSquareGameResponse, error) {
 	createFootballSquareGameURL := config.MICROSERVICESBASEURL["footballsquaregamemicroservices"] + "/CreateFootballSquareGame"
+	response := CreateFootballSquareGameResponse{}
 
-	client := ServiceClient{
-		Request:  service,
-		Endpoint: createFootballSquareGameURL,
-	}
+	err := service.Post(createFootballSquareGameURL, request, &response)
 
-	err := client.Post(&createFootballSquareGameResponse)
-
-	return createFootballSquareGameResponse, err
+	return response, err
 }
 
-func (service *ServiceClient) RequestGetFootballSquareGameByGameID(config *util.Config) (GetFootballSquareGameByGameIDResponse, error) {
+func (service *ServiceClient) RequestGetFootballSquareGameByGameID(config *util.Config, request GetFootballSquareGameByGameID) (GetFootballSquareGameByGameIDResponse, error) {
 	getFootballSquareGameByGameIDURL := config.MICROSERVICESBASEURL["footballsquaregamemicroservices"] + "/GetFootballSquareGameByGameID"
-	getFootballSquareGameByGameIDResponse := GetFootballSquareGameByGameIDResponse{}
+	response := GetFootballSquareGameByGameIDResponse{}
 
-	client := ServiceClient{
-		Request:  service,
-		Endpoint: getFootballSquareGameByGameIDURL,
-	}
+	err := service.Post(getFootballSquareGameByGameIDURL, request, &response)
 
-	err := client.Post(&getFootballSquareGameByGameIDResponse)
-
-	return getFootballSquareGameByGameIDResponse, err
+	return response, err
 }
 
-func (service *ServiceClient) RequestReserveFootballSquare(config *util.Config) (ReserveFootballSquareResponse, error) {
-	reserveFootballSquareGameResponse := ReserveFootballSquareResponse{}
+func (service *ServiceClient) RequestReserveFootballSquare(config *util.Config, request ReserveFootballSquare) (ReserveFootballSquareResponse, error) {
 	reserveFootballSquareGameURL := config.MICROSERVICESBASEURL["footballsquaregamemicroservices"] + "/ReserveFootballSquare"
+	reserveFootballSquareGameResponse := ReserveFootballSquareResponse{}
 
-	client := ServiceClient{
-		Request:  service,
-		Endpoint: reserveFootballSquareGameURL,
-	}
-
-	err := client.Post(&reserveFootballSquareGameResponse)
+	err := service.Post(reserveFootballSquareGameURL, request, &reserveFootballSquareGameResponse)
 
 	return reserveFootballSquareGameResponse, err
 }
