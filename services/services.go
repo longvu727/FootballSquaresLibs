@@ -10,34 +10,38 @@ import (
 )
 
 type Services interface {
-	Post(response interface{}) error
+	Post(enpoint string, request interface{}, response interface{}) error
 	RequestCreateFootballSquareGame(config *util.Config) (CreateFootballSquareGameResponse, error)
 	RequestGetFootballSquareGameByGameID(config *util.Config) (GetFootballSquareGameByGameIDResponse, error)
 	RequestReserveFootballSquare(config *util.Config) (ReserveFootballSquareResponse, error)
 }
 
 type ServiceClient struct {
-	Request  interface{}
-	Endpoint string
+	Client *http.Client
 }
 
-func (service *ServiceClient) Post(response interface{}) error {
+func NewServices() Services {
+	return &ServiceClient{
+		Client: &http.Client{},
+	}
+}
 
-	serviceJson, _ := json.Marshal(service.Request)
+func (service *ServiceClient) Post(enpoint string, request interface{}, response interface{}) error {
 
-	httpRequest, err := http.NewRequest("POST", service.Endpoint, bytes.NewBuffer(serviceJson))
+	serviceJson, _ := json.Marshal(request)
+
+	httpRequest, err := http.NewRequest("POST", enpoint, bytes.NewBuffer(serviceJson))
 	if err != nil {
 		return err
 	}
 
-	client := &http.Client{}
-	httpResponse, err := client.Do(httpRequest)
+	httpResponse, err := service.Client.Do(httpRequest)
 	if err != nil {
 		return err
 	}
 
 	if httpResponse.StatusCode != http.StatusOK {
-		return fmt.Errorf("error while calling %s, StatusCode: %d", service.Endpoint, httpResponse.StatusCode)
+		return fmt.Errorf("error while calling %s, StatusCode: %d", enpoint, httpResponse.StatusCode)
 	}
 
 	defer httpResponse.Body.Close()
