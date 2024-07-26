@@ -7,7 +7,7 @@ type CreateFootballSquareGameResponse struct {
 	ErrorMessage           string  `json:"error_message"`
 }
 
-type CreateFootballSquareGame struct {
+type CreateFootballSquareGameRequest struct {
 	GameID     int `json:"game_id"`
 	SquareID   int `json:"square_id"`
 	SquareSize int `json:"square_size"`
@@ -32,7 +32,7 @@ type GetFootballSquareGameByGameIDResponse struct {
 	ErrorMessage    string                      `json:"error_message"`
 }
 
-type GetFootballSquareGameByGameID struct {
+type GetFootballSquareGameByGameIDRequest struct {
 	GameID int `json:"game_id"`
 }
 
@@ -41,14 +41,14 @@ type ReserveFootballSquareResponse struct {
 	ErrorMessage string `json:"error_message"`
 }
 
-type ReserveFootballSquare struct {
+type ReserveFootballSquareRequest struct {
 	GameID      int `json:"game_id"`
 	UserID      int `json:"user_id"`
 	RowIndex    int `json:"row_index"`
 	ColumnIndex int `json:"column_index"`
 }
 
-func (service *ServiceClient) CreateFootballSquareGame(config *util.Config, request CreateFootballSquareGame) (CreateFootballSquareGameResponse, error) {
+func (service *ServiceClient) CreateFootballSquareGame(config *util.Config, request CreateFootballSquareGameRequest) (CreateFootballSquareGameResponse, error) {
 	createFootballSquareGameURL := config.MICROSERVICESBASEURL["footballsquaregamemicroservices"] + "/CreateFootballSquareGame"
 	response := CreateFootballSquareGameResponse{}
 
@@ -57,7 +57,7 @@ func (service *ServiceClient) CreateFootballSquareGame(config *util.Config, requ
 	return response, err
 }
 
-func (service *ServiceClient) GetFootballSquareGameByGameID(config *util.Config, request GetFootballSquareGameByGameID) (GetFootballSquareGameByGameIDResponse, error) {
+func (service *ServiceClient) GetFootballSquareGameByGameID(config *util.Config, request GetFootballSquareGameByGameIDRequest) (GetFootballSquareGameByGameIDResponse, error) {
 	getFootballSquareGameByGameIDURL := config.MICROSERVICESBASEURL["footballsquaregamemicroservices"] + "/GetFootballSquareGameByGameID"
 	response := GetFootballSquareGameByGameIDResponse{}
 
@@ -66,7 +66,7 @@ func (service *ServiceClient) GetFootballSquareGameByGameID(config *util.Config,
 	return response, err
 }
 
-func (service *ServiceClient) ReserveFootballSquare(config *util.Config, request ReserveFootballSquare) (ReserveFootballSquareResponse, error) {
+func (service *ServiceClient) ReserveFootballSquare(config *util.Config, request ReserveFootballSquareRequest) (ReserveFootballSquareResponse, error) {
 	reserveFootballSquareGameURL := config.MICROSERVICESBASEURL["footballsquaregamemicroservices"] + "/ReserveFootballSquare"
 	reserveFootballSquareGameResponse := ReserveFootballSquareResponse{}
 

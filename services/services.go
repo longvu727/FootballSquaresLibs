@@ -11,9 +11,9 @@ import (
 
 type Services interface {
 	Post(enpoint string, request interface{}, response interface{}) error
-	CreateFootballSquareGame(config *util.Config, request CreateFootballSquareGame) (CreateFootballSquareGameResponse, error)
-	GetFootballSquareGameByGameID(config *util.Config, request GetFootballSquareGameByGameID) (GetFootballSquareGameByGameIDResponse, error)
-	ReserveFootballSquare(config *util.Config, request ReserveFootballSquare) (ReserveFootballSquareResponse, error)
+	CreateFootballSquareGame(config *util.Config, request CreateFootballSquareGameRequest) (CreateFootballSquareGameResponse, error)
+	GetFootballSquareGameByGameID(config *util.Config, request GetFootballSquareGameByGameIDRequest) (GetFootballSquareGameByGameIDResponse, error)
+	ReserveFootballSquare(config *util.Config, request ReserveFootballSquareRequest) (ReserveFootballSquareResponse, error)
 
 	CreateUser(config *util.Config, request CreateUserRequest) (CreateUserResponse, error)
 	GetUserByGUID(config *util.Config, request GetUserByGUIDRequest) (GetUserByGUIDResponse, error)
