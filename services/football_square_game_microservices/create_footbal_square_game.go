@@ -1,17 +1,12 @@
 package footballsquaregameservices
 
 import (
-	"bytes"
-	"encoding/json"
-	"errors"
-	"net/http"
-
 	"github.com/longvu727/FootballSquaresLibs/services"
 	"github.com/longvu727/FootballSquaresLibs/util"
 )
 
 type CreateFootballSquareGameService interface {
-	services.Services
+	Request(config *util.Config) (CreateFootballSquareGameResponse, error)
 }
 
 type CreateFootballSquareGameResponse struct {
@@ -29,33 +24,16 @@ func NewCreateFootballSquareGameService() CreateFootballSquareGameService {
 	return &CreateFootballSquareGame{}
 }
 
-func (service CreateFootballSquareGame) Request(config *util.Config) (services.Response, error) {
+func (service *CreateFootballSquareGame) Request(config *util.Config) (CreateFootballSquareGameResponse, error) {
 	createFootballSquareGameResponse := CreateFootballSquareGameResponse{}
-
-	client := &http.Client{}
-	serviceJson, _ := json.Marshal(service)
-
 	createFootballSquareGameURL := config.MICROSERVICESBASEURL["footballsquaregamemicroservices"] + "/CreateFootballSquareGame"
 
-	request, err := http.NewRequest("POST", createFootballSquareGameURL, bytes.NewBuffer(serviceJson))
-	if err != nil {
-		return createFootballSquareGameResponse, err
+	client := services.ServiceClient{
+		Request:  service,
+		Endpoint: createFootballSquareGameURL,
 	}
 
-	response, err := client.Do(request)
-	if err != nil {
-		return createFootballSquareGameResponse, err
-	}
+	err := client.Post(&createFootballSquareGameResponse)
 
-	if response.StatusCode != http.StatusOK {
-		errStr := `unable to create FootballSquareGame`
-		createFootballSquareGameResponse.ErrorMessage = errStr
-
-		return createFootballSquareGameResponse, errors.New(errStr)
-	}
-
-	defer response.Body.Close()
-	json.NewDecoder(response.Body).Decode(&createFootballSquareGameResponse)
-
-	return createFootballSquareGameResponse, nil
+	return createFootballSquareGameResponse, err
 }

@@ -1,17 +1,12 @@
 package footballsquaregameservices
 
 import (
-	"bytes"
-	"encoding/json"
-	"errors"
-	"net/http"
-
 	"github.com/longvu727/FootballSquaresLibs/services"
 	"github.com/longvu727/FootballSquaresLibs/util"
 )
 
 type ReserveFootballSquareService interface {
-	services.Services
+	Request(config *util.Config) (ReserveFootballSquareResponse, error)
 }
 
 type ReserveFootballSquareResponse struct {
@@ -30,33 +25,16 @@ func NewReserveFootballSquareService() ReserveFootballSquareService {
 	return &ReserveFootballSquare{}
 }
 
-func (service ReserveFootballSquare) Request(config *util.Config) (services.Response, error) {
+func (service *ReserveFootballSquare) Request(config *util.Config) (ReserveFootballSquareResponse, error) {
 	reserveFootballSquareGameResponse := ReserveFootballSquareResponse{}
-
-	client := &http.Client{}
-	serviceJson, _ := json.Marshal(service)
-
 	reserveFootballSquareGameURL := config.MICROSERVICESBASEURL["footballsquaregamemicroservices"] + "/ReserveFootballSquare"
 
-	request, err := http.NewRequest("POST", reserveFootballSquareGameURL, bytes.NewBuffer(serviceJson))
-	if err != nil {
-		return reserveFootballSquareGameResponse, err
+	client := services.ServiceClient{
+		Request:  service,
+		Endpoint: reserveFootballSquareGameURL,
 	}
 
-	response, err := client.Do(request)
-	if err != nil {
-		return reserveFootballSquareGameResponse, err
-	}
+	err := client.Post(&reserveFootballSquareGameResponse)
 
-	if response.StatusCode != http.StatusOK {
-		errStr := `unable to reserve FootballSquareGame`
-		reserveFootballSquareGameResponse.ErrorMessage = errStr
-
-		return reserveFootballSquareGameResponse, errors.New(errStr)
-	}
-
-	defer response.Body.Close()
-	json.NewDecoder(response.Body).Decode(&reserveFootballSquareGameResponse)
-
-	return reserveFootballSquareGameResponse, nil
+	return reserveFootballSquareGameResponse, err
 }

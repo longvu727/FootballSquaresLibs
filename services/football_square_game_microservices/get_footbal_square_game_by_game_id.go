@@ -1,18 +1,12 @@
 package footballsquaregameservices
 
 import (
-	"bytes"
-	"encoding/json"
-	"errors"
-	"log"
-	"net/http"
-
-	"github.com/longvu727/FootballSquaresLibs/util"
 	"github.com/longvu727/FootballSquaresLibs/services"
+	"github.com/longvu727/FootballSquaresLibs/util"
 )
 
 type GetFootballSquareGameByGameIDService interface {
-	services.Services
+	Request(config *util.Config) (GetFootballSquareGameByGameIDResponse, error)
 }
 
 type GetFootballSquareGameByGameIDResponse struct {
@@ -21,44 +15,23 @@ type GetFootballSquareGameByGameIDResponse struct {
 }
 
 type GetFootballSquareGameByGameID struct {
-	GameID   int `json:"game_id"`
+	GameID int `json:"game_id"`
 }
 
 func NewGetFootballSquareGameByGameIDService() GetFootballSquareGameByGameIDService {
 	return &GetFootballSquareGameByGameID{}
 }
 
-func (service GetFootballSquareGameByGameID) Request(config *util.Config) (services.Response, error) {
-	getFootballSquareGameByGameIDResponse := &GetFootballSquareGameByGameIDResponse{}
-
-	client := &http.Client{}
-	serviceJson, _ := json.Marshal(service)
-
+func (service *GetFootballSquareGameByGameID) Request(config *util.Config) (GetFootballSquareGameByGameIDResponse, error) {
 	getFootballSquareGameByGameIDURL := config.MICROSERVICESBASEURL["footballsquaregamemicroservices"] + "/GetFootballSquareGameByGameID"
+	getFootballSquareGameByGameIDResponse := GetFootballSquareGameByGameIDResponse{}
 
-	request, err := http.NewRequest("POST", getFootballSquareGameByGameIDURL, bytes.NewBuffer(serviceJson))
-	if err != nil {
-		return getFootballSquareGameByGameIDResponse, err
+	client := services.ServiceClient{
+		Request:  service,
+		Endpoint: getFootballSquareGameByGameIDURL,
 	}
 
-	response, err := client.Do(request)
-	if err != nil {
-		return getFootballSquareGameByGameIDResponse, err
-	}
+	err := client.Post(&getFootballSquareGameByGameIDResponse)
 
-	if response.StatusCode != http.StatusOK {
-		errStr := `unable to create FootballSquareGame`
-		getFootballSquareGameByGameIDResponse.ErrorMessage = errStr
-
-		return getFootballSquareGameByGameIDResponse, errors.New(errStr)
-	}
-
-	defer response.Body.Close()
-
-	err = json.NewDecoder(response.Body).Decode(&getFootballSquareGameByGameIDResponse)
-	if err != nil {
-		log.Print(err.Error())
-	}
-
-	return getFootballSquareGameByGameIDResponse, nil
+	return getFootballSquareGameByGameIDResponse, err
 }
