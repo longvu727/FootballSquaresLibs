@@ -7,11 +7,10 @@ import (
 	"net/http"
 
 	"github.com/longvu727/FootballSquaresLibs/util"
-	"github.com/longvu727/FootballSquaresLibs/util/resources"
 )
 
 type Services interface {
-	Post(serviceType string, resource *resources.Resources) error
+	Post(response interface{}) error
 	RequestCreateFootballSquareGame(config *util.Config) (CreateFootballSquareGameResponse, error)
 	RequestGetFootballSquareGameByGameID(config *util.Config) (GetFootballSquareGameByGameIDResponse, error)
 	RequestReserveFootballSquare(config *util.Config) (ReserveFootballSquareResponse, error)
