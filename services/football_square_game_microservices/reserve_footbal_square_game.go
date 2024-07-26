@@ -26,13 +26,8 @@ type ReserveFootballSquare struct {
 	ColumnIndex int `json:"column_index"`
 }
 
-func NewReserveFootballSquareService(gameID int, userID int, rowIndex int, columnIndex int) ReserveFootballSquareService {
-	return &ReserveFootballSquare{
-		GameID:      gameID,
-		UserID:      userID,
-		RowIndex:    rowIndex,
-		ColumnIndex: columnIndex,
-	}
+func NewReserveFootballSquareService() ReserveFootballSquareService {
+	return &ReserveFootballSquare{}
 }
 
 func (service ReserveFootballSquare) Request(config *util.Config) (services.Response, error) {

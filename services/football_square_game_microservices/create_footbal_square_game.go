@@ -25,12 +25,8 @@ type CreateFootballSquareGame struct {
 	SquareSize int `json:"square_size"`
 }
 
-func NewCreateFootballSquareGameService(gameID int, squareID int, squareSize int) CreateFootballSquareGameService {
-	return &CreateFootballSquareGame{
-		GameID:     gameID,
-		SquareID:   squareID,
-		SquareSize: squareSize,
-	}
+func NewCreateFootballSquareGameService() CreateFootballSquareGameService {
+	return &CreateFootballSquareGame{}
 }
 
 func (service CreateFootballSquareGame) Request(config *util.Config) (services.Response, error) {
