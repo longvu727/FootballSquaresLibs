@@ -22,12 +22,9 @@ func (suite *ServicesTestSuite) TestPostInvalidEndPoint() {
 	server := httptest.NewServer(router)
 	defer server.Close()
 
-	client := ServiceClient{
-		Request:  struct{}{},
-		Endpoint: string([]byte{0x7f}),
-	}
+	client := NewServices()
 
-	err := client.Post(&struct{}{})
+	err := client.Post(string([]byte{0x7f}), struct{}{}, &struct{}{})
 	fmt.Println(err.Error(), server.URL)
 
 	suite.Error(err)
@@ -39,12 +36,9 @@ func (suite *ServicesTestSuite) TestPostHTTPError() {
 	}))
 	defer server.Close()
 
-	client := ServiceClient{
-		Request:  struct{}{},
-		Endpoint: server.URL,
-	}
+	client := NewServices()
 
-	err := client.Post(&struct{}{})
+	err := client.Post(server.URL, struct{}{}, &struct{}{})
 	suite.Error(err)
 }
 
@@ -54,12 +48,9 @@ func (suite *ServicesTestSuite) TestPostDoError() {
 	}))
 	defer server.Close()
 
-	client := ServiceClient{
-		Request:  struct{}{},
-		Endpoint: "dakfjakljal",
-	}
+	client := NewServices()
 
-	err := client.Post(&struct{}{})
+	err := client.Post("dakfjakljal", struct{}{}, &struct{}{})
 	suite.Error(err)
 }
 
@@ -69,12 +60,9 @@ func (suite *ServicesTestSuite) TestPostJsonDecodeError() {
 	}))
 	defer server.Close()
 
-	client := ServiceClient{
-		Request:  struct{}{},
-		Endpoint: server.URL,
-	}
+	client := NewServices()
 
-	err := client.Post(&struct{}{})
+	err := client.Post(server.URL, struct{}{}, &struct{}{})
 	suite.Error(err)
 }
 
@@ -94,17 +82,15 @@ func (suite *ServicesTestSuite) TestPost() {
 	}))
 	defer server.Close()
 
-	client := ServiceClient{
-		Request: testRequest{
-			RequestParameter1: 1,
-			RequestParameter2: 2,
-		},
-		Endpoint: server.URL,
-	}
+	client := NewServices()
 
 	myResponse := &testResponse{}
 
-	err := client.Post(myResponse)
+	err := client.Post(
+		server.URL,
+		testRequest{RequestParameter1: 1, RequestParameter2: 2},
+		myResponse,
+	)
 
 	suite.NoError(err)
 	suite.Equal(1, myResponse.APIResponseVar1)
