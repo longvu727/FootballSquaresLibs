@@ -21,6 +21,10 @@ type Services interface {
 
 	CreateSquare(config *util.Config, request CreateSquareRequest) (CreateSquareResponse, error)
 	GetSquare(config *util.Config, request GetSquareRequest) (GetSquareResponse, error)
+
+	CreateGame(config *util.Config, request CreateGameRequest) (CreateGameResponse, error)
+	GetGameByGUID(config *util.Config, request GetGameByGUIDRequest) (GetGameByGUIDResponse, error)
+	GetGame(config *util.Config, request GetGameRequest) (GetGameResponse, error)
 }
 
 type ServiceClient struct {
