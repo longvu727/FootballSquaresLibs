@@ -18,6 +18,9 @@ type Services interface {
 	CreateUser(config *util.Config, request CreateUserRequest) (CreateUserResponse, error)
 	GetUserByGUID(config *util.Config, request GetUserByGUIDRequest) (GetUserByGUIDResponse, error)
 	GetUser(config *util.Config, request GetUserRequest) (GetUserResponse, error)
+
+	CreateSquare(config *util.Config, request CreateSquareRequest) (CreateSquareResponse, error)
+	GetSquare(config *util.Config, request GetSquareRequest) (GetSquareResponse, error)
 }
 
 type ServiceClient struct {
