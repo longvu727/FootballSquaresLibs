@@ -32,6 +32,11 @@ func (suite *ConfigTestSuite) TestLoadConfigJSON() {
 	suite.Equal("http://squaremicroservices:3000", config.MICROSERVICESBASEURL["squaremicroservices"])
 }
 
+func (suite *ConfigTestSuite) TestLoadConfigJSONError() {
+	_, err := LoadConfig(".", "app_json_test1", "json")
+	suite.Error(err)
+}
+
 func TestConfigTestSuite(T *testing.T) {
 	suite.Run(T, new(ConfigTestSuite))
 }
