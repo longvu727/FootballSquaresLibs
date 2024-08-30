@@ -100,7 +100,7 @@ func (suite *FootballSquareGameTestSuite) TestReserveFootballSquare() {
 	suite.Equal(response, actualResponse)
 }
 
-func randomReserveFootballSquareResponse() ReserveFootballSquareResponse{
+func randomReserveFootballSquareResponse() ReserveFootballSquareResponse {
 	return ReserveFootballSquareResponse{
 		Reserved:     true,
 		ErrorMessage: "",
@@ -117,16 +117,16 @@ func randomGetFootballSquareGameByGameIDResponse() GetFootballSquareGameByGameID
 	return GetFootballSquareGameByGameIDResponse{
 		FootballSquares: []FootballSquareGameElement{
 			{
-				FootballSquaresGameID: rand.Intn(1000),
-				ColumnIndex:           rand.Intn(10),
-				RowIndex:              rand.Intn(10),
-				WinnerQuaterNumber:    rand.Intn(4),
-				Winner:                false,
-				UserID:                rand.Intn(1000),
-				SquareID:              rand.Intn(1000),
-				GameID:                rand.Intn(1000),
-				UserName:              "test name" + strconv.Itoa(rand.Intn(1000)),
-				UserAlias:             "test alias" + strconv.Itoa(rand.Intn(1000)),
+				FootballSquareGameID: rand.Intn(1000),
+				ColumnIndex:          rand.Intn(10),
+				RowIndex:             rand.Intn(10),
+				WinnerQuaterNumber:   rand.Intn(4),
+				Winner:               false,
+				UserID:               rand.Intn(1000),
+				SquareID:             rand.Intn(1000),
+				GameID:               rand.Intn(1000),
+				UserName:             "test name" + strconv.Itoa(rand.Intn(1000)),
+				UserAlias:            "test alias" + strconv.Itoa(rand.Intn(1000)),
 			},
 		},
 	}
