@@ -37,6 +37,36 @@ func (suite *ConfigTestSuite) TestLoadConfigJSONError() {
 	suite.Error(err)
 }
 
+func (suite *ConfigTestSuite) TestLoadCustomConfig() {
+	var config Config
+	err := LoadCustomConfig(".", "app_test", "env", &config)
+	if err != nil {
+		suite.Fail("Unable to load config file, " + err.Error())
+	}
+
+	suite.Equal("123", config.MySQLDSN)
+	suite.Equal("1000", config.PORT)
+	suite.Equal("redis_url", config.REDISURL)
+}
+
+func (suite *ConfigTestSuite) TestLoadCustomConfigJSON() {
+	var config Config
+	err := LoadCustomConfig(".", "app_json_test", "json", &config)
+	if err != nil {
+		suite.Fail("Unable to load config file, " + err.Error())
+	}
+
+	suite.Equal("1000", config.PORT)
+	suite.Len(config.MICROSERVICESBASEURL, 4)
+	suite.Equal("http://squaremicroservices:3000", config.MICROSERVICESBASEURL["squaremicroservices"])
+}
+
+func (suite *ConfigTestSuite) TestLoadCustomConfigJSONError() {
+	var config Config
+	err := LoadCustomConfig(".", "app_json_test1", "json", &config)
+	suite.Error(err)
+}
+
 func TestConfigTestSuite(T *testing.T) {
 	suite.Run(T, new(ConfigTestSuite))
 }
